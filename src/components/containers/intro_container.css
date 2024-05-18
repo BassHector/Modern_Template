@@ -1,0 +1,21 @@
+.intro_container {
+    position: relative;
+    justify-content: center;
+    left: -1dvw;
+    width: 102dvw;
+    height: 90dvh;
+    overflow-y: hidden;
+}
+
+.intro_container img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.IntroContainer::after {
+    content: "";
+    width: 100%;
+    padding-top: 100%;
+}

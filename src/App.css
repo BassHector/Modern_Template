@@ -1,0 +1,30 @@
+
+#ship{
+  top: 10%;
+  transition: all 0.5s ease;
+}
+
+.App {
+  background-color: #f1f1f1;
+}
+
+
+
+.App-header {
+  min-height: 200dvh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f1f1f1;
+}
+
+.page_wrapper{
+  background-color: #e4e2e0;
+  padding-right: 5%;
+  padding-left: 5%;
+}
+
+
+
+/*font-size: calc(10px + 2vmin);*/
+
+
