@@ -26,35 +26,45 @@ function App() {
     const carouselBotRef = useRef<HTMLDivElement>(null);
 
 
-
     useGSAP(() => {
         //intro parralax
         if (shipRef.current && bodyRef.current && BlanketRef.current) {
-            const blanketHeight = BlanketRef.current?.offsetHeight ?? 0;
+            const blanketHeight:number = BlanketRef.current?.offsetHeight ?? 0;
+            const shipHeight:number = shipRef.current?.offsetHeight ?? 0;
+            const actualShipHeight:number = shipHeight * 1.2 // this takes into account the starting top position of the ship
+            console.log(blanketHeight);
+            console.log(shipHeight*1.2);
             gsap.timeline({
                 scrollTrigger: {
                     trigger: bodyRef.current,
                     start: 'top top',
-                    end: () => `+=${blanketHeight}`,
+                    end: () => `+=${blanketHeight + ((actualShipHeight-blanketHeight))}` ,
                     scrub: 0.5,
                     pin: true,
-                    markers: true
+                    markers: true,
+
                 },
-            }).to(shipRef.current, { top: `${BlanketRef.current.offsetHeight - (shipRef.current.offsetHeight)}px` })
+            }).to(shipRef.current, { top: `${blanketHeight - (shipHeight)}px` })
                 .to(BlanketRef.current,{opacity: 1});
+
         }
 
-    },[]);
+    },);
 
     useGSAP(() => {
         //after intro parralax
         if(BlanketRef.current && headerTextRef.current && appHeadRef.current){
+            const blanketHeight = BlanketRef.current?.offsetHeight ?? 0;
+            const shipHeight:number = shipRef.current?.offsetHeight ?? 0;
+            const actualShipHeight:number = shipHeight * 1.2 // this takes into account the starting top position of the ship
+            const appHeadBounds = appHeadRef.current.getBoundingClientRect()
+            console.log()
             gsap.timeline({
                 scrollTrigger: {
                     trigger:headerTextRef.current,
-                    start: `top top`,
-                    pin: true,
-                    markers: true
+                    start: `${appHeadBounds.bottom } center`,
+
+
                 }
             }).to(headerTextRef.current,{
                 duration: 1,
@@ -63,16 +73,18 @@ function App() {
                 }
             } )
         }
-        if(carouselTopRef.current && carouselMidRef.current && carouselBotRef.current && CarouselRef.current && BlanketRef.current && appHeadRef.current){
-            console.log(CarouselRef.current.offsetHeight + appHeadRef.current.offsetHeight + BlanketRef.current.offsetHeight)
+        if(carouselTopRef.current && carouselMidRef.current && carouselBotRef.current && CarouselRef.current && BlanketRef.current && appHeadRef.current && headerTextRef.current){
+            const blanketHeight:number = BlanketRef.current?.offsetHeight ?? 0;
+
+
             gsap.timeline({
                 scrollTrigger: {
                     trigger: CarouselRef.current,
-                    start: `top top`,
-                    markers: true
+                    start: `${blanketHeight + ( blanketHeight) + (appHeadRef.current.offsetHeight/2)} top`,
+
+
                 }
             })
-            console.log(carouselTopRef.current.getBoundingClientRect())
         }
     },[])
 
@@ -88,31 +100,30 @@ function App() {
             </div>
             {/*<img src={backGround} alt={"Rocket Ship"} />*/}
         </IntroContainer>
-        <div className="main_wrapper">
-          <header className="App-header" ref={appHeadRef}>
-              <TextCenterContainer>
-                  <h1 ref={headerTextRef}></h1>
-              </TextCenterContainer>
-          </header>
-            <div className={"Carousel"} ref={CarouselRef}>
-                <CarouselSegment ref={carouselTopRef} id={"giga"}>
-                    <img className={"voyager"} src={Voyager1} alt={"voyager1"}/>
-                    <img className={"voyager"} src={Voyager1} alt={"voyager1"}/>
-                    <img className={"voyager"} src={Voyager1} alt={"voyager1"}/>
-                </CarouselSegment>
-                <CarouselSegment ref={carouselMidRef}>
-                    <img className={"voyager"} src={Voyager1} alt={"voyager1"}/>
-                    <img className={"voyager"} src={Voyager1} alt={"voyager1"}/>
-                    <img className={"voyager"} src={Voyager1} alt={"voyager1"}/>
-                </CarouselSegment>
-                <CarouselSegment ref={carouselBotRef}>
-                    <img className={"voyager"} src={Voyager1} alt={"voyager1"}/>
-                    <img className={"voyager"} src={Voyager1} alt={"voyager1"}/>
-                    <img className={"voyager"} src={Voyager1} alt={"voyager1"}/>
-                </CarouselSegment>
-            </div>
-
-        </div>
+        {/*<div className="main_wrapper">*/}
+        {/*  <header className="App-header" ref={appHeadRef}>*/}
+        {/*      <TextCenterContainer>*/}
+        {/*          <h1 ref={headerTextRef}></h1>*/}
+        {/*      </TextCenterContainer>*/}
+        {/*  </header>*/}
+        {/*    <div className={"Carousel"} ref={CarouselRef}>*/}
+        {/*        <CarouselSegment ref={carouselTopRef} id={"giga"}>*/}
+        {/*            <img className={"voyager"} src={Voyager1} alt={"voyager1"}/>*/}
+        {/*            <img className={"voyager"} src={Voyager1} alt={"voyager1"}/>*/}
+        {/*            <img className={"voyager"} src={Voyager1} alt={"voyager1"}/>*/}
+        {/*        </CarouselSegment>*/}
+        {/*        <CarouselSegment ref={carouselMidRef}>*/}
+        {/*            <img className={"voyager"} src={Voyager1} alt={"voyager1"}/>*/}
+        {/*            <img className={"voyager"} src={Voyager1} alt={"voyager1"}/>*/}
+        {/*            <img className={"voyager"} src={Voyager1} alt={"voyager1"}/>*/}
+        {/*        </CarouselSegment>*/}
+        {/*        <CarouselSegment ref={carouselBotRef}>*/}
+        {/*            <img className={"voyager"} src={Voyager1} alt={"voyager1"}/>*/}
+        {/*            <img className={"voyager"} src={Voyager1} alt={"voyager1"}/>*/}
+        {/*            <img className={"voyager"} src={Voyager1} alt={"voyager1"}/>*/}
+        {/*        </CarouselSegment>*/}
+        {/*    </div>*/}
+        {/*</div>*/}
     </div>
     );
 

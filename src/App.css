@@ -9,6 +9,7 @@
   aspect-ratio: 1/1;
   width: max(100dvh, 100dvw);
   height: max(100dvh, 100dvw);
+
   top: 80dvh;
   left: unset;
   z-index: 0;
@@ -18,6 +19,7 @@
 .App {
   background-color: #f1f1f1;
   max-width: 100vw;
+  overflow-x: clip;
 }
 
 #shipBlanket{
@@ -58,7 +60,8 @@
 }
 
 .main_wrapper{
-min-height: 100dvh;
+  min-height: 100dvh;
+  width: 100dvw;
 }
 
 .Carousel{
