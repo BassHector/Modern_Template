@@ -1,0 +1,5 @@
+.carousel_segment{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1em;
+}

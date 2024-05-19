@@ -1,10 +1,9 @@
 .intro_container {
     position: relative;
     justify-content: center;
-    left: -1dvw;
-    width: 102dvw;
-    height: 90dvh;
-    overflow-y: hidden;
+    width: 100dvw;
+    height: 100dvh;
+    overflow: hidden;
 }
 
 .intro_container img{
